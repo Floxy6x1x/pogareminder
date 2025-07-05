@@ -67,6 +67,7 @@
     }
     section:hover { transform: translateY(-5px); }
     h2 { font-size: 1.5em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    h3 { margin: 15px 0 10px 0; color: #fbbf24; }
     input, textarea, button {
       width: 100%; padding: 12px; border: none; border-radius: 10px;
       font-size: 1em; margin-bottom: 10px; transition: all 0.3s ease;
@@ -113,14 +114,14 @@
       .controls { flex-direction: column; align-items: stretch; }
     }
     .stats {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 15px; margin-bottom: 20px;
     }
     .stat-card {
       background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;
       text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .stat-number { font-size: 2em; font-weight: bold; color: #fbbf24; }
+    .stat-number { font-size: 1.8em; font-weight: bold; color: #fbbf24; }
     .tab-navigation {
       display: flex; gap: 10px; margin-bottom: 30px; justify-content: center;
     }
@@ -135,6 +136,84 @@
     .tab-btn:hover:not(.active) { background: rgba(255, 255, 255, 0.3); }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
+
+    /* Bike Tracker Styles */
+    .bike-stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px; margin-bottom: 20px;
+    }
+    .bike-stat {
+      background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 10px;
+      text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .bike-stat-value { font-size: 1.5em; font-weight: bold; color: #fbbf24; display: block; }
+    .bike-stat-label { font-size: 0.8em; opacity: 0.8; margin-top: 5px; }
+    .ride-controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .ride-btn {
+      flex: 1; min-width: 120px; padding: 12px; border: none; border-radius: 10px;
+      font-size: 0.9em; font-weight: bold; cursor: pointer; transition: all 0.3s ease;
+    }
+    .ride-btn.start { background: linear-gradient(45deg, #22c55e, #16a34a); color: white; }
+    .ride-btn.pause { background: linear-gradient(45deg, #f59e0b, #d97706); color: white; }
+    .ride-btn.stop { background: linear-gradient(45deg, #ef4444, #dc2626); color: white; }
+    .ride-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .map-container {
+      background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px;
+      margin-bottom: 20px; min-height: 150px; display: flex; align-items: center;
+      justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .recent-rides { max-height: 250px; overflow-y: auto; }
+    .ride-item {
+      background: rgba(255, 255, 255, 0.1); border-radius: 10px;
+      padding: 12px; margin-bottom: 8px; border-left: 4px solid #22c55e;
+    }
+    .ride-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .ride-stats-mini { display: flex; gap: 10px; font-size: 0.8em; opacity: 0.9; }
+    .challenges-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px; margin-bottom: 20px;
+    }
+    .challenge-card {
+      background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;
+    }
+    .challenge-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.15); }
+    .challenge-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .challenge-name { font-weight: bold; font-size: 1em; }
+    .challenge-badge {
+      padding: 4px 8px; border-radius: 12px; font-size: 0.7em; font-weight: bold;
+    }
+    .challenge-badge.completed { background: linear-gradient(45deg, #22c55e, #16a34a); color: white; }
+    .challenge-badge.active { background: linear-gradient(45deg, #fbbf24, #f59e0b); color: #333; }
+    .progress-bar {
+      background: rgba(255, 255, 255, 0.2); border-radius: 8px; height: 8px; overflow: hidden; margin-bottom: 5px;
+    }
+    .progress-fill { background: linear-gradient(45deg, #22c55e, #16a34a); height: 100%; transition: width 0.3s ease; }
+    .progress-text { font-size: 0.8em; opacity: 0.9; }
+    .sync-section {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;
+    }
+    .sync-card {
+      background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 15px;
+      text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;
+    }
+    .sync-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.15); }
+    .sync-logo { font-size: 2em; margin-bottom: 8px; }
+    .pwa-install-banner {
+      position: fixed; bottom: 20px; left: 20px; right: 20px;
+      background: linear-gradient(45deg, #2563eb, #1d4ed8); color: white;
+      padding: 15px 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 1000; display: none; align-items: center; gap: 15px;
+    }
+    .pwa-install-banner.show { display: flex; }
+    .pwa-banner-content { flex: 1; }
+    .pwa-banner-title { font-weight: bold; margin-bottom: 5px; }
+    .pwa-banner-text { font-size: 0.9em; opacity: 0.9; }
+    .pwa-install-btn {
+      background: #fbbf24; color: #333; border: none; border-radius: 10px;
+      padding: 8px 16px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;
+    }
+    .pwa-install-btn:hover { background: #f59e0b; transform: scale(1.05); }
   </style>
 </head>
 <body>
@@ -193,14 +272,14 @@
       <section>
         <h2>🔗 Linkuri Utile</h2>
         
-        <h3 style="margin: 15px 0 10px 0; color: #fbbf24;">📺 Știri România</h3>
+        <h3>📺 Știri România</h3>
         <ul>
           <li><a href="https://www.digi.ro" target="_blank">📺 Digi24 - Știri în timp real</a></li>
           <li><a href="https://www.g4.ro" target="_blank">📱 G4Media - Jurnalism independent</a></li>
           <li><a href="https://www.hotnews.ro" target="_blank">🔥 HotNews - Ultimele știri</a></li>
         </ul>
 
-        <h3 style="margin: 15px 0 10px 0; color: #fbbf24;">🚴‍♂️ Ciclism</h3>
+        <h3>🚴‍♂️ Ciclism</h3>
         <ul>
           <li><a href="https://www.letour.fr" target="_blank">🏆 Turul Franței - Site Oficial</a></li>
           <li><a href="https://www.procyclingstats.com" target="_blank">📊 ProCyclingStats - Statistici Complete</a></li>
@@ -211,23 +290,163 @@
 
     <!-- Bike Tracker Tab -->
     <div id="bike-tab" class="tab-content">
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number" id="total-rides">0</div>
+          <div>Curse totale</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="total-distance">0</div>
+          <div>km totali</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="total-time">0</div>
+          <div>ore totale</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="longest-ride">0</div>
+          <div>cea mai lungă</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="weekly-progress">0%</div>
+          <div>progres săptămânal</div>
+        </div>
+      </div>
+
+      <!-- Challenges Section -->
       <section>
-        <h2>🚴‍♂️ Coming Soon!</h2>
-        <p style="text-align: center; padding: 40px; opacity: 0.8;">
-          Bike Tracker cu GPS, challenge-uri și statistici va fi disponibil în curând! 🚀
-        </p>
+        <h2>🏆 Challenge-uri Active (Strava Style)</h2>
+        <div id="challenges-container" class="challenges-grid">
+          <!-- Challenges will be rendered here -->
+        </div>
+      </section>
+
+      <section>
+        <h2>🚴‍♂️ Cursă Activă</h2>
+        
+        <div class="bike-stats">
+          <div class="bike-stat">
+            <span class="bike-stat-value" id="current-speed">0.0</span>
+            <div class="bike-stat-label">km/h</div>
+          </div>
+          <div class="bike-stat">
+            <span class="bike-stat-value" id="current-distance">0.0</span>
+            <div class="bike-stat-label">km</div>
+          </div>
+          <div class="bike-stat">
+            <span class="bike-stat-value" id="current-time">00:00</span>
+            <div class="bike-stat-label">timp</div>
+          </div>
+          <div class="bike-stat">
+            <span class="bike-stat-value" id="avg-speed">0.0</span>
+            <div class="bike-stat-label">medie</div>
+          </div>
+          <div class="bike-stat">
+            <span class="bike-stat-value" id="elevation">--</span>
+            <div class="bike-stat-label">altitudine</div>
+          </div>
+          <div class="bike-stat">
+            <span class="bike-stat-value" id="calories">0</span>
+            <div class="bike-stat-label">calorii</div>
+          </div>
+        </div>
+
+        <div class="ride-controls">
+          <button class="ride-btn start" id="start-btn" onclick="startRide()">🚀 Start Cursă</button>
+          <button class="ride-btn pause" id="pause-btn" onclick="pauseRide()" disabled>⏸️ Pauză</button>
+          <button class="ride-btn stop" id="stop-btn" onclick="stopRide()" disabled>⏹️ Stop</button>
+        </div>
+
+        <div class="map-container" id="map-container">
+          <div style="text-align: center; opacity: 0.7;">
+            <div style="font-size: 2em; margin-bottom: 10px;">🗺️</div>
+            <div>Harta GPS va apărea aici când pornești cursa</div>
+            <div style="font-size: 0.8em; margin-top: 8px;">Necesită permisiune de locație</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>📊 Curse Recente</h2>
+        <div class="recent-rides" id="recent-rides">
+          <div style="text-align: center; opacity: 0.7; padding: 20px;">
+            Nicio cursă înregistrată încă
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>🔄 Sincronizare</h2>
+        <div class="sync-section">
+          <div class="sync-card" onclick="connectGarmin()">
+            <div class="sync-logo">⌚</div>
+            <h3>Garmin Connect</h3>
+            <p>Sincronizează cu ceasul Garmin</p>
+            <button style="margin-top: 8px; width: 100%; font-size: 0.8em;">Conectează</button>
+          </div>
+          <div class="sync-card" onclick="connectStrava()">
+            <div class="sync-logo">🏃‍♂️</div>
+            <h3>Strava</h3>
+            <p>Upload automat pe Strava</p>
+            <button style="margin-top: 8px; width: 100%; font-size: 0.8em;">Conectează</button>
+          </div>
+          <div class="sync-card" onclick="exportGPX()">
+            <div class="sync-logo">📁</div>
+            <h3>Export GPX</h3>
+            <p>Descarcă fișierele de traseu</p>
+            <button style="margin-top: 8px; width: 100%; font-size: 0.8em;">Export</button>
+          </div>
+        </div>
       </section>
     </div>
 
     <!-- Settings Tab -->
     <div id="settings-tab" class="tab-content">
       <section>
-        <h2>⚙️ Setări</h2>
-        <p style="text-align: center; padding: 40px; opacity: 0.8;">
-          Panoul de setări va fi disponibil în curând! 🔧
-        </p>
+        <h2>🔊 Setări Audio</h2>
+        
+        <div style="margin-bottom: 20px;">
+          <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+            <input type="checkbox" id="sound-enabled" checked style="width: auto;">
+            <span>🔊 Activează notificările audio</span>
+          </label>
+          
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px;">📢 Volumul notificărilor:</label>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.7" 
+                   style="width: 100%; margin-bottom: 10px;">
+            <div style="font-size: 0.9em; opacity: 0.8;">Volume: <span id="volume-display">70%</span></div>
+          </div>
+          
+          <button onclick="testSound()" style="margin-bottom: 20px;">🔔 Testează sunetul</button>
+        </div>
+
+        <button onclick="saveAudioSettings()" style="background: linear-gradient(45deg, #22c55e, #16a34a);">
+          💾 Salvează setările audio
+        </button>
+      </section>
+
+      <section>
+        <h2>📱 PWA & Export</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+          <button onclick="installPWA()">📱 Instalează PWA</button>
+          <button onclick="exportData()">💾 Export Date</button>
+          <button onclick="shareApp()">📤 Partajează</button>
+          <button onclick="clearAllData()" style="background: linear-gradient(45deg, #ef4444, #dc2626);">🗑️ Reset Total</button>
+        </div>
       </section>
     </div>
+  </div>
+
+  <!-- PWA Install Banner -->
+  <div id="pwa-install-banner" class="pwa-install-banner">
+    <div class="pwa-banner-content">
+      <div class="pwa-banner-title">📱 Instalează PogaReminder</div>
+      <div class="pwa-banner-text">Accesează rapid de pe ecranul principal!</div>
+    </div>
+    <button class="pwa-install-btn" onclick="installPWA()">Instalează</button>
+    <button style="background: transparent; border: none; color: white; font-size: 1.2em; cursor: pointer;" onclick="dismissInstallBanner()">✕</button>
   </div>
 
   <div id="notification" class="notification"></div>
@@ -235,21 +454,55 @@
   <audio id="alarm" preload="auto">
     <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+PsumMeBC2E0fPTdjMFLILU8dODNwgZZrTu559NEAxUtujvul4dBS+E0fPUeSUGKIPA8dWLOA==" type="audio/wav">
   </audio>
+  
+  <audio id="success-sound" preload="auto">
+    <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+PsumMeBC2E0fPTdjMFLILU8dODNwgZZrTu559NEAxUtujvul4dBS+E0fPUeSUGKIPA8dWLOA==" type="audio/wav">
+  </audio>
 
   <script>
-    // Data storage
+    // Data storage with extended bike functionality
     let appData = {
       reminders: [],
       todos: [],
-      notes: ''
+      notes: '',
+      rides: [],
+      bikeStats: {
+        totalRides: 0,
+        totalDistance: 0,
+        totalTime: 0,
+        weeklyGoal: 400,
+        monthlyGoal: 1600,
+        longestRide: 0
+      },
+      challenges: [
+        { name: "Gran Fondo Challenge", target: 100, current: 0, unit: "km", active: true },
+        { name: "400-Minute Challenge", target: 400, current: 0, unit: "min", active: true },
+        { name: "Ten Days Active", target: 10, current: 0, unit: "days", active: true }
+      ],
+      settings: {
+        soundEnabled: true,
+        volume: 0.7,
+        milestoneAlerts: true,
+        achievementSounds: true,
+        reminderSounds: true
+      }
     };
     
     let reminderCheckInterval;
+    let currentRide = null;
+    let rideInterval = null;
+    let watchId = null;
+    let startTime = null;
+    let lastMilestoneDistance = 0;
+    let lastMilestoneTime = 0;
+    let installPrompt = null;
+    let isOnline = navigator.onLine;
 
     function initApp() {
       loadData();
       renderAll();
       startReminderCheck();
+      initPWA();
       showNotification('PogaReminder pornit cu succes! 🚀', 'success');
     }
 
@@ -257,7 +510,9 @@
       try {
         const saved = localStorage.getItem('pogaReminder-data');
         if (saved) {
-          appData = JSON.parse(saved);
+          const parsedData = JSON.parse(saved);
+          appData = { ...appData, ...parsedData };
+          
           // Convert date strings back to Date objects
           appData.reminders.forEach(reminder => {
             reminder.time = new Date(reminder.time);
@@ -266,6 +521,12 @@
           appData.todos.forEach(todo => {
             todo.created = new Date(todo.created);
           });
+          if (appData.rides) {
+            appData.rides.forEach(ride => {
+              ride.startTime = new Date(ride.startTime);
+              ride.endTime = new Date(ride.endTime);
+            });
+          }
         }
       } catch (error) {
         console.error('Error loading data:', error);
@@ -276,6 +537,7 @@
 
     function saveData() {
       try {
+        appData.lastModified = new Date().toISOString();
         localStorage.setItem('pogaReminder-data', JSON.stringify(appData));
         updateStats();
       } catch (error) {
@@ -293,7 +555,6 @@
 
     // TAB MANAGEMENT
     function switchTab(tabName) {
-      // Hide all tabs
       document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.remove('active');
       });
@@ -301,9 +562,61 @@
         btn.classList.remove('active');
       });
       
-      // Show selected tab
       document.getElementById(`${tabName}-tab`).classList.add('active');
       event.target.classList.add('active');
+      
+      if (tabName === 'bike') {
+        addSampleRides();
+        updateBikeStats();
+        renderRecentRides();
+        renderChallenges();
+      } else if (tabName === 'settings') {
+        loadSettingsUI();
+      }
+    }
+
+    // AUDIO SYSTEM
+    function playSound(soundId, options = {}) {
+      if (!appData.settings.soundEnabled) return;
+      
+      try {
+        const audio = document.getElementById(soundId);
+        if (audio) {
+          audio.volume = appData.settings.volume;
+          audio.currentTime = 0;
+          audio.play().catch(error => {
+            console.log('Audio play failed:', error);
+          });
+        }
+      } catch (error) {
+        console.log('Sound error:', error);
+      }
+    }
+
+    function testSound() {
+      playSound('alarm');
+      showNotification('🔊 Test sunet redus!', 'success');
+    }
+
+    function playNotificationSound(type) {
+      if (!appData.settings.soundEnabled) return;
+      
+      switch(type) {
+        case 'reminder':
+          if (appData.settings.reminderSounds) playSound('alarm');
+          break;
+        case 'milestone':
+          if (appData.settings.milestoneAlerts) playSound('success-sound');
+          break;
+        case 'achievement':
+          if (appData.settings.achievementSounds) playSound('success-sound');
+          break;
+        case 'success':
+          playSound('success-sound');
+          break;
+        default:
+          playSound('success-sound');
+      }
     }
 
     // REMINDER FUNCTIONS
@@ -384,16 +697,9 @@
     }
 
     function triggerReminder(reminder) {
-      // Play alarm sound
-      const alarm = document.getElementById('alarm');
-      alarm.play().catch(() => {
-        console.log('Audio playback failed');
-      });
-      
-      // Show notification
+      playNotificationSound('reminder');
       showNotification(`🔔 REMINDER: ${reminder.text}`, 'success', 10000);
       
-      // Browser notification if supported
       if ('Notification' in window && Notification.permission === 'granted') {
         new Notification('PogaReminder', {
           body: reminder.text,
@@ -424,6 +730,7 @@
       renderTodos();
       
       input.value = '';
+      playNotificationSound('success');
       showNotification('Sarcină adăugată! ✅', 'success');
     }
 
@@ -448,6 +755,7 @@
         todo.completed = !todo.completed;
         saveData();
         renderTodos();
+        playNotificationSound(todo.completed ? 'achievement' : 'success');
         showNotification(todo.completed ? 'Sarcină finalizată! 🎉' : 'Sarcină reactivată!', 'success');
       }
     }
@@ -463,8 +771,6 @@
     function renderNotes() {
       const notesElement = document.getElementById('notes');
       notesElement.value = appData.notes || '';
-      notesElement.disabled = false;
-      notesElement.readOnly = false;
     }
 
     function saveNotes() {
@@ -472,7 +778,6 @@
       appData.notes = notesElement.value;
       saveData();
       
-      // Visual feedback for manual save
       const originalBg = notesElement.style.backgroundColor;
       notesElement.style.backgroundColor = 'rgba(34, 197, 94, 0.3)';
       setTimeout(() => {
@@ -480,6 +785,740 @@
       }, 500);
       
       showNotification('Notițe salvate manual! 📝', 'success');
+    }
+
+    // BIKE TRACKING FUNCTIONS
+    function startRide() {
+      if (!navigator.geolocation) {
+        showNotification('GPS nu este suportat de browser!', 'error');
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          currentRide = {
+            id: Date.now(),
+            startTime: new Date(),
+            endTime: null,
+            distance: 0,
+            maxSpeed: 0,
+            avgSpeed: 0,
+            calories: 0,
+            positions: [],
+            paused: false,
+            totalPausedTime: 0
+          };
+          
+          startTime = Date.now();
+          
+          watchId = navigator.geolocation.watchPosition(
+            updatePosition,
+            handleLocationError,
+            { enableHighAccuracy: true, maximumAge: 1000, timeout: 10000 }
+          );
+          
+          rideInterval = setInterval(updateRideStats, 1000);
+          
+          document.getElementById('start-btn').disabled = true;
+          document.getElementById('pause-btn').disabled = false;
+          document.getElementById('stop-btn').disabled = false;
+          
+          playNotificationSound('success');
+          showNotification('Cursă pornită! GPS activ 📍', 'success');
+          updateMapDisplay();
+        },
+        () => {
+          showNotification('Nu pot accesa locația! Verifică permisiunile GPS.', 'error');
+        }
+      );
+    }
+
+    function pauseRide() {
+      if (!currentRide) return;
+      
+      if (currentRide.paused) {
+        currentRide.paused = false;
+        currentRide.pauseStartTime = null;
+        document.getElementById('pause-btn').textContent = '⏸️ Pauză';
+        playNotificationSound('success');
+        showNotification('Cursă reluată! 🚀', 'success');
+      } else {
+        currentRide.paused = true;
+        currentRide.pauseStartTime = Date.now();
+        document.getElementById('pause-btn').textContent = '▶️ Continuă';
+        playNotificationSound('success');
+        showNotification('Cursă în pauză ⏸️', 'success');
+      }
+    }
+
+    function stopRide() {
+      if (!currentRide) return;
+      
+      if (watchId) {
+        navigator.geolocation.clearWatch(watchId);
+        watchId = null;
+      }
+      
+      if (rideInterval) {
+        clearInterval(rideInterval);
+        rideInterval = null;
+      }
+      
+      currentRide.endTime = new Date();
+      
+      const duration = (currentRide.endTime - currentRide.startTime - currentRide.totalPausedTime) / 1000 / 60;
+      currentRide.avgSpeed = duration > 0 ? (currentRide.distance / duration * 60) : 0;
+      currentRide.calories = Math.round(currentRide.distance * 50);
+      
+      appData.rides.push(currentRide);
+      
+      appData.bikeStats.totalRides++;
+      appData.bikeStats.totalDistance += currentRide.distance;
+      appData.bikeStats.totalTime += duration / 60;
+      
+      if (currentRide.distance > appData.bikeStats.longestRide) {
+        appData.bikeStats.longestRide = currentRide.distance;
+      }
+      
+      updateChallenges(currentRide, duration);
+      saveData();
+      
+      document.getElementById('start-btn').disabled = false;
+      document.getElementById('pause-btn').disabled = true;
+      document.getElementById('stop-btn').disabled = true;
+      document.getElementById('pause-btn').textContent = '⏸️ Pauză';
+      
+      lastMilestoneDistance = 0;
+      lastMilestoneTime = 0;
+      
+      playNotificationSound('achievement');
+      showNotification(`Cursă salvată! ${currentRide.distance.toFixed(2)} km în ${formatDuration(duration)}`, 'success');
+      
+      updateBikeStats();
+      renderRecentRides();
+      resetCurrentStats();
+      checkAchievements();
+      
+      currentRide = null;
+    }
+
+    function updatePosition(position) {
+      if (!currentRide || currentRide.paused) return;
+      
+      const { latitude, longitude, speed, altitude } = position.coords;
+      const newPosition = {
+        lat: latitude,
+        lng: longitude,
+        timestamp: Date.now(),
+        speed: speed || 0,
+        altitude: altitude || 0
+      };
+      
+      currentRide.positions.push(newPosition);
+      
+      if (currentRide.positions.length > 1) {
+        const prevPos = currentRide.positions[currentRide.positions.length - 2];
+        const distance = calculateDistance(prevPos.lat, prevPos.lng, latitude, longitude);
+        currentRide.distance += distance;
+      }
+      
+      const currentSpeed = (speed || 0) * 3.6;
+      if (currentSpeed > currentRide.maxSpeed) {
+        currentRide.maxSpeed = currentSpeed;
+      }
+      
+      updateCurrentDisplay(newPosition);
+    }
+
+    function updateCurrentDisplay(position) {
+      const speed = (position.speed || 0) * 3.6;
+      const altitude = position.altitude || 0;
+      
+      document.getElementById('current-speed').textContent = speed.toFixed(1);
+      document.getElementById('current-distance').textContent = currentRide.distance.toFixed(2);
+      document.getElementById('elevation').textContent = altitude > 0 ? Math.round(altitude) + 'm' : '--';
+      
+      const elapsed = (Date.now() - startTime - currentRide.totalPausedTime) / 1000;
+      document.getElementById('current-time').textContent = formatDuration(elapsed / 60);
+      
+      const avgSpeed = elapsed > 0 ? (currentRide.distance / elapsed * 3600) : 0;
+      document.getElementById('avg-speed').textContent = avgSpeed.toFixed(1);
+      
+      const calories = Math.round(currentRide.distance * 50);
+      document.getElementById('calories').textContent = calories;
+      
+      checkMilestones();
+    }
+
+    function checkMilestones() {
+      if (!currentRide || currentRide.paused) return;
+      
+      const currentDistanceKm = Math.floor(currentRide.distance);
+      const lastDistanceKm = Math.floor(lastMilestoneDistance);
+      
+      if (currentDistanceKm >= lastDistanceKm + 10 && currentDistanceKm >= 10) {
+        lastMilestoneDistance = currentRide.distance;
+        playNotificationSound('milestone');
+        showNotification(`🎯 Milestone: ${currentDistanceKm}km completați!`, 'success');
+      }
+      
+      const currentTimeMinutes = Math.floor((Date.now() - startTime - currentRide.totalPausedTime) / 1000 / 60);
+      const lastTimeMinutes = Math.floor(lastMilestoneTime);
+      
+      if (currentTimeMinutes >= lastTimeMinutes + 30 && currentTimeMinutes >= 30) {
+        lastMilestoneTime = currentTimeMinutes;
+        playNotificationSound('milestone');
+        showNotification(`⏱️ Milestone: ${currentTimeMinutes} minute de pedalat!`, 'success');
+      }
+    }
+
+    function updateRideStats() {
+      if (!currentRide) return;
+      
+      if (currentRide.paused) {
+        if (currentRide.pauseStartTime) {
+          currentRide.totalPausedTime += 1000;
+        }
+      } else {
+        const elapsed = (Date.now() - startTime - currentRide.totalPausedTime) / 1000;
+        document.getElementById('current-time').textContent = formatDuration(elapsed / 60);
+      }
+    }
+
+    function handleLocationError(error) {
+      let message = 'Eroare GPS: ';
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          message += 'Permisiune refuzată';
+          break;
+        case error.POSITION_UNAVAILABLE:
+          message += 'Locația nu este disponibilă';
+          break;
+        case error.TIMEOUT:
+          message += 'Timeout GPS';
+          break;
+        default:
+          message += 'Eroare necunoscută';
+          break;
+      }
+      showNotification(message, 'error');
+    }
+
+    function calculateDistance(lat1, lng1, lat2, lng2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLng = (lng2 - lng1) * Math.PI / 180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLng/2) * Math.sin(dLng/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R * c;
+    }
+
+    function updateMapDisplay() {
+      const mapContainer = document.getElementById('map-container');
+      if (currentRide && currentRide.positions.length > 0) {
+        const lastPos = currentRide.positions[currentRide.positions.length - 1];
+        mapContainer.innerHTML = `
+          <div style="text-align: center;">
+            <div style="font-size: 1.5em; margin-bottom: 8px;">📍</div>
+            <div><strong>Locația actuală:</strong></div>
+            <div>Lat: ${lastPos.lat.toFixed(6)}</div>
+            <div>Lng: ${lastPos.lng.toFixed(6)}</div>
+            <div style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">
+              ${currentRide.positions.length} puncte GPS înregistrate
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function updateBikeStats() {
+      document.getElementById('total-rides').textContent = appData.bikeStats.totalRides;
+      document.getElementById('total-distance').textContent = appData.bikeStats.totalDistance.toFixed(1);
+      document.getElementById('total-time').textContent = appData.bikeStats.totalTime.toFixed(1);
+      document.getElementById('longest-ride').textContent = appData.bikeStats.longestRide.toFixed(1) + ' km';
+      
+      const weeklyMinutes = calculateWeeklyMinutes();
+      const weeklyProgress = Math.min(100, (weeklyMinutes / appData.bikeStats.weeklyGoal * 100));
+      document.getElementById('weekly-progress').textContent = weeklyProgress.toFixed(0) + '%';
+    }
+
+    function calculateWeeklyMinutes() {
+      const oneWeekAgo = new Date();
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+      
+      return appData.rides
+        .filter(ride => new Date(ride.startTime) >= oneWeekAgo)
+        .reduce((total, ride) => {
+          const duration = (ride.endTime - ride.startTime - ride.totalPausedTime) / 1000 / 60;
+          return total + duration;
+        }, 0);
+    }
+
+    function updateChallenges(ride, duration) {
+      const granFondo = appData.challenges.find(c => c.name === "Gran Fondo Challenge");
+      if (granFondo && granFondo.active) {
+        granFondo.current += ride.distance;
+      }
+      
+      const weeklyMinutes = calculateWeeklyMinutes();
+      const timeChallenge = appData.challenges.find(c => c.name === "400-Minute Challenge");
+      if (timeChallenge && timeChallenge.active) {
+        timeChallenge.current = weeklyMinutes;
+      }
+      
+      const tenDays = appData.challenges.find(c => c.name === "Ten Days Active");
+      if (tenDays && tenDays.active) {
+        const uniqueDays = new Set(appData.rides.map(r => 
+          new Date(r.startTime).toDateString()
+        ));
+        tenDays.current = uniqueDays.size;
+      }
+    }
+
+    function renderChallenges() {
+      const container = document.getElementById('challenges-container');
+      
+      container.innerHTML = appData.challenges.map(challenge => {
+        const progress = Math.min(100, (challenge.current / challenge.target) * 100);
+        const isCompleted = challenge.current >= challenge.target;
+        
+        return `
+          <div class="challenge-card">
+            <div class="challenge-header">
+              <div class="challenge-name">${challenge.name}</div>
+              <div class="challenge-badge ${isCompleted ? 'completed' : 'active'}">
+                ${isCompleted ? '✅ Completat' : '🎯 Activ'}
+              </div>
+            </div>
+            <div class="challenge-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: ${progress}%"></div>
+              </div>
+              <div class="progress-text">
+                ${challenge.current.toFixed(1)} / ${challenge.target} ${challenge.unit}
+              </div>
+            </div>
+            ${isCompleted ? '<div style="color: #22c55e; font-weight: bold; font-size: 0.8em;">🎉 Challenge completat!</div>' : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function addSampleRides() {
+      if (appData.rides.length === 0) {
+        const sampleRides = [
+          {
+            id: Date.now() - 86400000 * 2,
+            startTime: new Date(Date.now() - 86400000 * 2),
+            endTime: new Date(Date.now() - 86400000 * 2 + 12600000),
+            distance: 98.7,
+            maxSpeed: 52.4,
+            avgSpeed: 28.2,
+            calories: 2850,
+            positions: [],
+            totalPausedTime: 900000
+          },
+          {
+            id: Date.now() - 86400000 * 5,
+            startTime: new Date(Date.now() - 86400000 * 5),
+            endTime: new Date(Date.now() - 86400000 * 5 + 7200000),
+            distance: 65.4,
+            maxSpeed: 47.3,
+            avgSpeed: 32.7,
+            calories: 1850,
+            positions: [],
+            totalPausedTime: 300000
+          },
+          {
+            id: Date.now() - 86400000 * 7,
+            startTime: new Date(Date.now() - 86400000 * 7),
+            endTime: new Date(Date.now() - 86400000 * 7 + 5400000),
+            distance: 45.2,
+            maxSpeed: 44.9,
+            avgSpeed: 30.1,
+            calories: 1320,
+            positions: [],
+            totalPausedTime: 180000
+          }
+        ];
+        
+        appData.rides = sampleRides;
+        
+        appData.bikeStats.totalRides = sampleRides.length;
+        appData.bikeStats.totalDistance = sampleRides.reduce((sum, ride) => sum + ride.distance, 0);
+        appData.bikeStats.totalTime = sampleRides.reduce((sum, ride) => {
+          const duration = (ride.endTime - ride.startTime - ride.totalPausedTime) / 1000 / 60 / 60;
+          return sum + duration;
+        }, 0);
+        appData.bikeStats.longestRide = Math.max(...sampleRides.map(r => r.distance));
+        
+        updateChallengesFromAllRides();
+        showNotification('📊 Date sample încărcate - profil ciclist serios activat!', 'success');
+        saveData();
+      }
+    }
+
+    function updateChallengesFromAllRides() {
+      appData.challenges.forEach(challenge => {
+        challenge.current = 0;
+      });
+      
+      appData.rides.forEach(ride => {
+        const duration = (ride.endTime - ride.startTime - ride.totalPausedTime) / 1000 / 60;
+        updateChallenges(ride, duration);
+      });
+    }
+
+    function renderRecentRides() {
+      const container = document.getElementById('recent-rides');
+      
+      if (appData.rides.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; opacity: 0.7; padding: 20px;">
+            Nicio cursă înregistrată încă
+          </div>
+        `;
+        return;
+      }
+      
+      const recentRides = [...appData.rides].reverse().slice(0, 5);
+      
+      container.innerHTML = recentRides.map(ride => {
+        const duration = (ride.endTime - ride.startTime - ride.totalPausedTime) / 1000 / 60;
+        return `
+          <div class="ride-item">
+            <div class="ride-header">
+              <strong>🚴‍♂️ ${formatDateTime(ride.startTime)}</strong>
+              <button class="remove" onclick="deleteRide(${ride.id})">Șterge</button>
+            </div>
+            <div class="ride-stats-mini">
+              <span>📏 ${ride.distance.toFixed(2)} km</span>
+              <span>⏱️ ${formatDuration(duration)}</span>
+              <span>⚡ ${ride.avgSpeed.toFixed(1)} km/h</span>
+              <span>🔥 ${ride.calories} cal</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function deleteRide(rideId) {
+      if (confirm('Ești sigur că vrei să ștergi această cursă?')) {
+        const rideIndex = appData.rides.findIndex(r => r.id === rideId);
+        if (rideIndex !== -1) {
+          const ride = appData.rides[rideIndex];
+          const duration = (ride.endTime - ride.startTime - ride.totalPausedTime) / 1000 / 60 / 60;
+          
+          appData.bikeStats.totalRides--;
+          appData.bikeStats.totalDistance -= ride.distance;
+          appData.bikeStats.totalTime -= duration;
+          
+          appData.rides.splice(rideIndex, 1);
+          
+          saveData();
+          updateBikeStats();
+          renderRecentRides();
+          showNotification('Cursă ștearsă!', 'success');
+        }
+      }
+    }
+
+    function resetCurrentStats() {
+      document.getElementById('current-speed').textContent = '0.0';
+      document.getElementById('current-distance').textContent = '0.0';
+      document.getElementById('current-time').textContent = '00:00';
+      document.getElementById('avg-speed').textContent = '0.0';
+      document.getElementById('elevation').textContent = '--';
+      document.getElementById('calories').textContent = '0';
+      
+      const mapContainer = document.getElementById('map-container');
+      mapContainer.innerHTML = `
+        <div style="text-align: center; opacity: 0.7;">
+          <div style="font-size: 2em; margin-bottom: 10px;">🗺️</div>
+          <div>Harta GPS va apărea aici când pornești cursa</div>
+          <div style="font-size: 0.8em; margin-top: 8px;">
+            Necesită permisiune de locație
+          </div>
+        </div>
+      `;
+    }
+
+    function formatDuration(minutes) {
+      const hours = Math.floor(minutes / 60);
+      const mins = Math.floor(minutes % 60);
+      const secs = Math.floor((minutes % 1) * 60);
+      
+      if (hours > 0) {
+        return `${hours}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function checkAchievements() {
+      const achievements = [];
+      
+      if (appData.bikeStats.longestRide >= 100) {
+        achievements.push('🏆 Primul tău Gran Fondo de 100km+!');
+      }
+      
+      if (appData.bikeStats.totalDistance >= 1000) {
+        achievements.push('🎯 1000km totali parcurși!');
+      }
+      
+      if (appData.bikeStats.totalRides >= 50) {
+        achievements.push('🚴‍♂️ 50 de curse completate!');
+      }
+      
+      appData.challenges.forEach(challenge => {
+        if (challenge.current >= challenge.target && challenge.active) {
+          achievements.push(`🏆 Challenge completat: ${challenge.name}!`);
+          playNotificationSound('achievement');
+        }
+      });
+      
+      achievements.forEach((achievement, index) => {
+        setTimeout(() => {
+          showNotification(achievement, 'success', 6000);
+          if (index === 0) playNotificationSound('achievement');
+        }, index * 2000);
+      });
+    }
+
+    // SYNC FUNCTIONS
+    function connectGarmin() {
+      showNotification('Conectarea cu Garmin Connect nu este implementată încă. Folosește Export GPX!', 'error');
+    }
+
+    function connectStrava() {
+      showNotification('Conectarea cu Strava nu este implementată încă. Folosește Export GPX!', 'error');
+    }
+
+    function exportGPX() {
+      if (appData.rides.length === 0) {
+        showNotification('Nicio cursă de exportat!', 'error');
+        return;
+      }
+      
+      const lastRide = appData.rides[appData.rides.length - 1];
+      
+      let gpxContent = `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="PogaReminder">
+  <trk>
+    <name>Bike Ride ${formatDateTime(lastRide.startTime)}</name>
+    <trkseg>`;
+      
+      lastRide.positions.forEach(pos => {
+        gpxContent += `
+      <trkpt lat="${pos.lat}" lon="${pos.lng}">
+        <ele>${pos.altitude || 0}</ele>
+        <time>${new Date(pos.timestamp).toISOString()}</time>
+      </trkpt>`;
+      });
+      
+      gpxContent += `
+    </trkseg>
+  </trk>
+</gpx>`;
+      
+      const blob = new Blob([gpxContent], { type: 'application/gpx+xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `bike-ride-${lastRide.startTime.toISOString().split('T')[0]}.gpx`;
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      showNotification('Fișier GPX exportat! 📁', 'success');
+    }
+
+    // PWA FUNCTIONALITY
+    function initPWA() {
+      if ('serviceWorker' in navigator) {
+        registerServiceWorker();
+      }
+      
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        installPrompt = e;
+        setTimeout(() => {
+          if (!localStorage.getItem('pwa-install-dismissed')) {
+            showInstallBanner();
+          }
+        }, 30000);
+      });
+      
+      window.addEventListener('appinstalled', () => {
+        hideInstallBanner();
+        showNotification('🎉 PogaReminder instalat cu succes!', 'success');
+        playNotificationSound('achievement');
+      });
+    }
+
+    async function registerServiceWorker() {
+      try {
+        const swCode = `
+          const CACHE_NAME = 'poga-reminder-v1';
+          self.addEventListener('install', (event) => {
+            console.log('Service Worker installed');
+          });
+          self.addEventListener('fetch', (event) => {
+            event.respondWith(
+              caches.match(event.request).then((response) => {
+                return response || fetch(event.request);
+              })
+            );
+          });
+        `;
+
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        const swUrl = URL.createObjectURL(blob);
+        
+        await navigator.serviceWorker.register(swUrl);
+        console.log('Service Worker registered successfully');
+      } catch (error) {
+        console.log('Service Worker registration failed:', error);
+      }
+    }
+
+    function showInstallBanner() {
+      document.getElementById('pwa-install-banner').classList.add('show');
+    }
+
+    function hideInstallBanner() {
+      document.getElementById('pwa-install-banner').classList.remove('show');
+    }
+
+    function dismissInstallBanner() {
+      hideInstallBanner();
+      localStorage.setItem('pwa-install-dismissed', 'true');
+    }
+
+    async function installPWA() {
+      if (!installPrompt) {
+        showNotification('⚠️ Instalarea nu este disponibilă în acest moment', 'error');
+        return;
+      }
+
+      const result = await installPrompt.prompt();
+      
+      if (result.outcome === 'accepted') {
+        playNotificationSound('success');
+        showNotification('📱 Aplicația se instalează...', 'success');
+      }
+      
+      installPrompt = null;
+      hideInstallBanner();
+    }
+
+    // SETTINGS MANAGEMENT
+    function loadSettingsUI() {
+      if (document.getElementById('sound-enabled')) {
+        document.getElementById('sound-enabled').checked = appData.settings.soundEnabled;
+        document.getElementById('volume-slider').value = appData.settings.volume;
+        document.getElementById('volume-display').textContent = Math.round(appData.settings.volume * 100) + '%';
+      }
+    }
+
+    function saveAudioSettings() {
+      appData.settings.soundEnabled = document.getElementById('sound-enabled').checked;
+      appData.settings.volume = parseFloat(document.getElementById('volume-slider').value);
+      
+      saveData();
+      playNotificationSound('success');
+      showNotification('🔊 Setări audio salvate!', 'success');
+    }
+
+    function clearAllData() {
+      if (confirm('⚠️ Ești sigur că vrei să ștergi TOATE datele? Această acțiune nu poate fi anulată!')) {
+        appData = {
+          reminders: [],
+          todos: [],
+          notes: '',
+          rides: [],
+          bikeStats: {
+            totalRides: 0,
+            totalDistance: 0,
+            totalTime: 0,
+            weeklyGoal: 400,
+            monthlyGoal: 1600,
+            longestRide: 0
+          },
+          challenges: [
+            { name: "Gran Fondo Challenge", target: 100, current: 0, unit: "km", active: true },
+            { name: "400-Minute Challenge", target: 400, current: 0, unit: "min", active: true },
+            { name: "Ten Days Active", target: 10, current: 0, unit: "days", active: true }
+          ],
+          settings: {
+            soundEnabled: true,
+            volume: 0.7,
+            milestoneAlerts: true,
+            achievementSounds: true,
+            reminderSounds: true
+          }
+        };
+        
+        saveData();
+        renderAll();
+        updateBikeStats();
+        renderRecentRides();
+        renderChallenges();
+        playNotificationSound('success');
+        showNotification('🗑️ Toate datele au fost șterse!', 'success');
+      }
+    }
+
+    function exportData() {
+      const dataStr = JSON.stringify(appData, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      
+      if (navigator.share && navigator.canShare({ files: [new File([blob], 'backup.json')] })) {
+        const file = new File([blob], `poga-reminder-backup-${new Date().toISOString().split('T')[0]}.json`, {
+          type: 'application/json'
+        });
+        
+        navigator.share({
+          title: 'PogaReminder Backup',
+          files: [file]
+        });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `poga-reminder-backup-${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+      
+      playNotificationSound('success');
+      showNotification('💾 Date exportate!', 'success');
+    }
+
+    async function shareApp() {
+      const shareData = {
+        title: '🚴‍♂️ PogaReminder - Complete Bike Tracker',
+        text: 'Aplicația completă pentru tracking curselor de bicicletă!',
+        url: window.location.href
+      };
+
+      if (navigator.share && navigator.canShare(shareData)) {
+        try {
+          await navigator.share(shareData);
+          playNotificationSound('success');
+        } catch (error) {
+          fallbackShare();
+        }
+      } else {
+        fallbackShare();
+      }
+    }
+
+    function fallbackShare() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showNotification('🔗 Link copiat în clipboard!', 'success');
+        playNotificationSound('success');
+      });
     }
 
     // UTILITY FUNCTIONS
@@ -528,7 +1567,7 @@
       Notification.requestPermission();
     }
 
-    // Auto-save notes
+    // Initialize app when page loads
     document.addEventListener('DOMContentLoaded', () => {
       initApp();
       
@@ -538,7 +1577,6 @@
         window.notesSaveTimeout = setTimeout(() => {
           appData.notes = e.target.value;
           saveData();
-          // Show subtle feedback that notes are saved
           const originalBg = e.target.style.backgroundColor;
           e.target.style.backgroundColor = 'rgba(34, 197, 94, 0.1)';
           setTimeout(() => {
@@ -555,6 +1593,23 @@
       document.getElementById('reminder-text').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') setReminder();
       });
+      
+      // Volume slider event listener
+      if (document.getElementById('volume-slider')) {
+        document.getElementById('volume-slider').addEventListener('input', (e) => {
+          const volume = parseFloat(e.target.value);
+          document.getElementById('volume-display').textContent = Math.round(volume * 100) + '%';
+          appData.settings.volume = volume;
+          playSound('success-sound');
+        });
+      }
+      
+      // Show PWA install banner after delay if applicable
+      setTimeout(() => {
+        if (!localStorage.getItem('pwa-install-dismissed') && !window.matchMedia('(display-mode: standalone)').matches) {
+          showInstallBanner();
+        }
+      }, 5000);
     });
   </script>
 </body>
