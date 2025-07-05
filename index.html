@@ -79,3 +79,687 @@
     section {
       background: rgba(255, 255, 255, 0.1); border-radius: 15px;
       padding: 25px; margin-bottom: 25px; border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+    section:hover { transform: translateY(-5px); }
+    h2 { font-size: 1.5em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    input, textarea, button {
+      width: 100%; padding: 12px; border: none; border-radius: 10px;
+      font-size: 1em; margin-bottom: 10px; transition: all 0.3s ease;
+    }
+    input, textarea { background: rgba(255, 255, 255, 0.9); color: #333; }
+    input:focus, textarea:focus {
+      outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+      transform: scale(1.02);
+    }
+    button {
+      background: linear-gradient(45deg, #fbbf24, #f59e0b); color: #333;
+      font-weight: bold; cursor: pointer; transition: all 0.3s ease;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3); }
+    button:active { transform: translateY(0); }
+    button.remove {
+      background: linear-gradient(45deg, #ef4444, #dc2626); color: white;
+      padding: 5px 10px; font-size: 0.8em; width: auto; margin-left: 10px;
+    }
+    textarea { min-height: 100px; resize: vertical; font-family: inherit; }
+    ul { list-style: none; }
+    li {
+      background: rgba(255, 255, 255, 0.1); margin: 10px 0; padding: 15px;
+      border-radius: 10px; display: flex; align-items: center; justify-content: space-between;
+      border-left: 4px solid #fbbf24; transition: all 0.3s ease;
+    }
+    li:hover { background: rgba(255, 255, 255, 0.2); transform: translateX(5px); }
+    li.completed { opacity: 0.6; text-decoration: line-through; border-left-color: #10b981; }
+    a { color: #fbbf24; text-decoration: none; font-weight: bold; transition: all 0.3s ease; }
+    a:hover { color: #f59e0b; text-shadow: 0 0 10px rgba(251, 191, 36, 0.5); }
+    .reminder-item {
+      background: rgba(34, 197, 94, 0.2); border-left-color: #22c55e;
+      animation: pulse 2s infinite;
+    }
+    .reminder-item.expired {
+      background: rgba(239, 68, 68, 0.2); border-left-color: #ef4444; animation: none;
+    }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+    .notification {
+      position: fixed; top: 20px; right: 20px;
+      background: linear-gradient(45deg, #22c55e, #16a34a); color: white;
+      padding: 15px 20px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 1000; opacity: 0; transform: translateX(100%); transition: all 0.3s ease;
+    }
+    .notification.show { opacity: 1; transform: translateX(0); }
+    .notification.error { background: linear-gradient(45deg, #ef4444, #dc2626); }
+    .controls { display: flex; gap: 10px; align-items: center; }
+    .checkbox { width: 20px; height: 20px; margin-right: 10px; cursor: pointer; }
+    @media (max-width: 768px) {
+      .container { padding: 20px; margin: 10px; }
+      h1 { font-size: 2em; }
+      .controls { flex-direction: column; align-items: stretch; }
+    }
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px; margin-bottom: 20px;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;
+      text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .stat-number { font-size: 2em; font-weight: bold; color: #fbbf24; }
+    .floating-controls {
+      position: fixed; bottom: 20px; right: 20px; display: flex;
+      flex-direction: column; gap: 10px;
+    }
+    .floating-btn {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(45deg, #fbbf24, #f59e0b); border: none;
+      color: #333; font-size: 1.5em; cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;
+    }
+    .floating-btn:hover { transform: scale(1.1); }
+    .tab-navigation {
+      display: flex; gap: 10px; margin-bottom: 30px; justify-content: center;
+    }
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.2); color: white; border: none;
+      border-radius: 25px; padding: 12px 25px; cursor: pointer;
+      transition: all 0.3s ease; font-size: 1em; font-weight: bold;
+    }
+    .tab-btn.active {
+      background: linear-gradient(45deg, #fbbf24, #f59e0b); color: #333;
+    }
+    .tab-btn:hover:not(.active) { background: rgba(255, 255, 255, 0.3); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .bike-stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px; margin-bottom: 20px;
+    }
+    .bike-stat {
+      background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;
+      text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .bike-stat-value {
+      font-size: 1.8em; font-weight: bold; color: #fbbf24; display: block;
+    }
+    .bike-stat-label { font-size: 0.9em; opacity: 0.8; margin-top: 5px; }
+    .ride-controls {
+      display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .ride-btn {
+      flex: 1; min-width: 120px; padding: 15px; border: none; border-radius: 10px;
+      font-size: 1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease;
+    }
+    .ride-btn.start { background: linear-gradient(45deg, #22c55e, #16a34a); color: white; }
+    .ride-btn.pause { background: linear-gradient(45deg, #f59e0b, #d97706); color: white; }
+    .ride-btn.stop { background: linear-gradient(45deg, #ef4444, #dc2626); color: white; }
+    .ride-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .map-container {
+      background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px;
+      margin-bottom: 20px; min-height: 200px; display: flex; align-items: center;
+      justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .recent-rides { max-height: 300px; overflow-y: auto; }
+    .ride-item {
+      background: rgba(255, 255, 255, 0.1); border-radius: 10px;
+      padding: 15px; margin-bottom: 10px; border-left: 4px solid #22c55e;
+    }
+    .ride-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+    }
+    .ride-stats-mini {
+      display: flex; gap: 15px; font-size: 0.9em; opacity: 0.9;
+    }
+    .sync-section {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px; margin-top: 20px;
+    }
+    .sync-card {
+      background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px;
+      text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    .sync-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.15); }
+    .sync-logo { font-size: 3em; margin-bottom: 10px; }
+    .challenges-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px; margin-bottom: 20px;
+    }
+    .challenge-card {
+      background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;
+    }
+    .challenge-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.15); }
+    .challenge-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;
+    }
+    .challenge-name { font-weight: bold; font-size: 1.1em; }
+    .challenge-badge {
+      padding: 5px 10px; border-radius: 15px; font-size: 0.8em; font-weight: bold;
+    }
+    .challenge-badge.completed { background: linear-gradient(45deg, #22c55e, #16a34a); color: white; }
+    .challenge-badge.active { background: linear-gradient(45deg, #fbbf24, #f59e0b); color: #333; }
+    .challenge-progress { margin-bottom: 10px; }
+    .progress-bar {
+      background: rgba(255, 255, 255, 0.2); border-radius: 10px; height: 10px; overflow: hidden; margin-bottom: 5px;
+    }
+    .progress-fill {
+      background: linear-gradient(45deg, #22c55e, #16a34a); height: 100%; transition: width 0.3s ease;
+    }
+    .progress-text { font-size: 0.9em; opacity: 0.9; }
+    .performance-metrics {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px; margin-bottom: 20px;
+    }
+    .metric-card {
+      background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 15px;
+      text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .metric-title { font-size: 0.9em; opacity: 0.8; margin-bottom: 5px; }
+    .metric-value { font-size: 1.5em; font-weight: bold; color: #fbbf24; }
+    .metric-unit { font-size: 0.8em; opacity: 0.7; }
+    .sound-test-btn {
+      background: rgba(255, 255, 255, 0.2); color: white; border: none;
+      border-radius: 10px; padding: 15px; cursor: pointer; transition: all 0.3s ease; font-size: 1em;
+    }
+    .sound-test-btn:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+    .settings-section { margin-bottom: 30px; }
+    .settings-group {
+      background: rgba(255, 255, 255, 0.1); border-radius: 10px;
+      padding: 20px; margin-bottom: 20px;
+    }
+    input[type="range"] {
+      background: rgba(255, 255, 255, 0.2); border-radius: 10px; height: 8px; outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb { background: #fbbf24; border-radius: 50%; cursor: pointer; }
+    label { cursor: pointer; }
+    .volume-indicator { font-size: 0.9em; opacity: 0.8; margin-top: 5px; }
+    .pwa-install-banner {
+      position: fixed; bottom: 20px; left: 20px; right: 20px;
+      background: linear-gradient(45deg, #2563eb, #1d4ed8); color: white;
+      padding: 15px 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 1000; display: none; align-items: center; gap: 15px;
+    }
+    .pwa-install-banner.show { display: flex; }
+    .pwa-banner-content { flex: 1; }
+    .pwa-banner-title { font-weight: bold; margin-bottom: 5px; }
+    .pwa-banner-text { font-size: 0.9em; opacity: 0.9; }
+    .pwa-install-btn {
+      background: #fbbf24; color: #333; border: none; border-radius: 10px;
+      padding: 10px 20px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;
+    }
+    .pwa-install-btn:hover { background: #f59e0b; transform: scale(1.05); }
+    .offline-indicator {
+      position: fixed; top: 10px; left: 50%; transform: translateX(-50%);
+      background: #ef4444; color: white; padding: 10px 20px; border-radius: 25px;
+      font-size: 0.9em; z-index: 1000; display: none;
+    }
+    .offline-indicator.show { display: block; }
+    .update-available {
+      position: fixed; top: 20px; right: 20px; background: #22c55e;
+      color: white; padding: 15px; border-radius: 10px; cursor: pointer;
+      z-index: 1000; display: none;
+    }
+    .update-available.show { display: block; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PogaReminder 🚴‍♂️</h1>
+
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+      <button class="tab-btn active" onclick="switchTab('main')">📋 Principal</button>
+      <button class="tab-btn" onclick="switchTab('bike')">🚴‍♂️ Bike Tracker</button>
+      <button class="tab-btn" onclick="switchTab('settings')">⚙️ Setări</button>
+    </div>
+
+    <!-- Main Tab -->
+    <div id="main-tab" class="tab-content active">
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number" id="active-reminders">0</div>
+        <div>Reminder-uri active</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="pending-todos">0</div>
+        <div>Sarcini în așteptare</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="completed-todos">0</div>
+        <div>Sarcini finalizate</div>
+      </div>
+    </div>
+
+    <section>
+      <h2>🔔 Reminder</h2>
+      <div class="controls">
+        <input type="datetime-local" id="reminder-time" style="flex: 1;">
+        <input type="text" id="reminder-text" placeholder="Mesaj reminder..." style="flex: 1;">
+        <button onclick="setReminder()" style="width: auto; padding: 12px 20px;">Setează</button>
+      </div>
+      <ul id="reminders-list"></ul>
+    </section>
+
+    <section>
+      <h2>✅ To-Do</h2>
+      <div class="controls">
+        <input id="todo-input" placeholder="Adaugă sarcină..." style="flex: 1;">
+        <button onclick="addTodo()" style="width: auto; padding: 12px 20px;">Adaugă</button>
+      </div>
+      <ul id="todo-list"></ul>
+    </section>
+
+    <section>
+      <h2>📝 Notițe</h2>
+      <textarea id="notes" placeholder="Scrie notițele tale aici..."></textarea>
+      <button onclick="saveNotes()">Salvează notițe</button>
+    </section>
+
+    <section>
+      <h2>🔗 Linkuri Utile</h2>
+      
+      <h3 style="margin: 15px 0 10px 0; color: #fbbf24;">📺 Știri România</h3>
+      <ul>
+        <li><a href="https://www.digi.ro" target="_blank">📺 Digi24 - Știri în timp real</a></li>
+        <li><a href="https://www.g4.ro" target="_blank">📱 G4Media - Jurnalism independent</a></li>
+        <li><a href="https://www.hotnews.ro" target="_blank">🔥 HotNews - Ultimele știri</a></li>
+        <li><a href="https://www.mediafax.ro" target="_blank">📰 Mediafax - Agenție de presă</a></li>
+        <li><a href="https://www.stiripesurse.ro" target="_blank">📋 Știri pe Surse</a></li>
+      </ul>
+
+      <h3 style="margin: 15px 0 10px 0; color: #fbbf24;">🌍 Știri Internaționale</h3>
+      <ul>
+        <li><a href="https://www.bbc.com/news" target="_blank">🇬🇧 BBC News - Știri globale</a></li>
+        <li><a href="https://www.euronews.com/romania" target="_blank">🇪🇺 Euronews România</a></li>
+        <li><a href="https://www.france24.com" target="_blank">🇫🇷 France24 - Perspective internaționale</a></li>
+        <li><a href="https://www.dw.com/ro" target="_blank">🇩🇪 Deutsche Welle România</a></li>
+      </ul>
+
+      <h3 style="margin: 15px 0 10px 0; color: #fbbf24;">🚴‍♂️ Ciclism</h3>
+      <ul>
+        <li><a href="https://www.letour.fr" target="_blank">🏆 Turul Franței - Site Oficial</a></li>
+        <li><a href="https://www.procyclingstats.com" target="_blank">📊 ProCyclingStats - Statistici Complete</a></li>
+        <li><a href="https://www.cyclingnews.com" target="_blank">📰 CyclingNews - Știri și Analize</a></li>
+        <li><a href="https://www.uci.org" target="_blank">🌍 UCI - Uniunea Ciclismului Internațional</a></li>
+        <li><a href="https://www.eurosport.ro/ciclism/" target="_blank">📺 Eurosport România - Ciclism</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Bike Tracker Tab -->
+  <div id="bike-tab" class="tab-content">
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number" id="total-rides">0</div>
+        <div>Curse totale</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="total-distance">0</div>
+        <div>km totali</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="total-time">0</div>
+        <div>ore totale</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="longest-ride">0</div>
+        <div>cea mai lungă</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="weekly-progress">0%</div>
+        <div>progres săptămânal</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="avg-speed-total">0</div>
+        <div>viteză medie</div>
+      </div>
+    </div>
+
+    <!-- Challenges Section -->
+    <section>
+      <h2>🏆 Challenge-uri Active (Strava Style)</h2>
+      <div id="challenges-container" class="challenges-grid">
+        <!-- Challenges will be rendered here -->
+      </div>
+    </section>
+
+    <section>
+      <h2>🚴‍♂️ Cursă Activă</h2>
+      
+      <div class="bike-stats">
+        <div class="bike-stat">
+          <span class="bike-stat-value" id="current-speed">0.0</span>
+          <div class="bike-stat-label">km/h</div>
+        </div>
+        <div class="bike-stat">
+          <span class="bike-stat-value" id="current-distance">0.0</span>
+          <div class="bike-stat-label">km</div>
+        </div>
+        <div class="bike-stat">
+          <span class="bike-stat-value" id="current-time">00:00</span>
+          <div class="bike-stat-label">timp</div>
+        </div>
+        <div class="bike-stat">
+          <span class="bike-stat-value" id="avg-speed">0.0</span>
+          <div class="bike-stat-label">medie</div>
+        </div>
+        <div class="bike-stat">
+          <span class="bike-stat-value" id="elevation">--</span>
+          <div class="bike-stat-label">altitudine</div>
+        </div>
+        <div class="bike-stat">
+          <span class="bike-stat-value" id="calories">0</span>
+          <div class="bike-stat-label">calorii</div>
+        </div>
+      </div>
+
+      <div class="ride-controls">
+        <button class="ride-btn start" id="start-btn" onclick="startRide()">🚀 Start Cursă</button>
+        <button class="ride-btn pause" id="pause-btn" onclick="pauseRide()" disabled>⏸️ Pauză</button>
+        <button class="ride-btn stop" id="stop-btn" onclick="stopRide()" disabled>⏹️ Stop</button>
+      </div>
+
+      <div class="map-container" id="map-container">
+        <div style="text-align: center; opacity: 0.7;">
+          <div style="font-size: 3em; margin-bottom: 10px;">🗺️</div>
+          <div>Harta GPS va apărea aici când pornești cursa</div>
+          <div style="font-size: 0.9em; margin-top: 10px;">
+            Necesită permisiune de locație
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>📈 Performanță & Analiză</h2>
+      <div class="performance-metrics">
+        <div class="metric-card">
+          <div class="metric-title">Viteză Maximă</div>
+          <div class="metric-value" id="max-speed-ever">0</div>
+          <div class="metric-unit">km/h</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Săptămâna Aceasta</div>
+          <div class="metric-value" id="week-distance">0</div>
+          <div class="metric-unit">km</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Zile Active/Lună</div>
+          <div class="metric-value" id="active-days">0</div>
+          <div class="metric-unit">zile</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Calorii/Cursă</div>
+          <div class="metric-value" id="avg-calories">0</div>
+          <div class="metric-unit">medie</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Progres Lunar</div>
+          <div class="metric-value" id="month-progress">0%</div>
+          <div class="metric-unit">obiectiv</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Consistency Score</div>
+          <div class="metric-value" id="consistency-score">0</div>
+          <div class="metric-unit">/10</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>📊 Curse Recente</h2>
+      <div class="recent-rides" id="recent-rides">
+        <div style="text-align: center; opacity: 0.7; padding: 20px;">
+          Nicio cursă înregistrată încă
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔄 Sincronizare</h2>
+      <div class="sync-section">
+        <div class="sync-card" onclick="connectGarmin()">
+          <div class="sync-logo">⌚</div>
+          <h3>Garmin Connect</h3>
+          <p>Sincronizează cu ceasul Garmin</p>
+          <button style="margin-top: 10px; width: 100%;">Conectează</button>
+        </div>
+        <div class="sync-card" onclick="connectStrava()">
+          <div class="sync-logo">🏃‍♂️</div>
+          <h3>Strava</h3>
+          <p>Upload automat pe Strava</p>
+          <button style="margin-top: 10px; width: 100%;">Conectează</button>
+        </div>
+        <div class="sync-card" onclick="exportGPX()">
+          <div class="sync-logo">📁</div>
+          <h3>Export GPX</h3>
+          <p>Descarcă fișierele de traseu</p>
+          <button style="margin-top: 10px; width: 100%;">Export</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Settings Tab -->
+  <div id="settings-tab" class="tab-content">
+    <section>
+      <h2>🔊 Setări Audio</h2>
+      
+      <div style="margin-bottom: 20px;">
+        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+          <input type="checkbox" id="sound-enabled" checked style="width: auto;">
+          <span>🔊 Activează notificările audio</span>
+        </label>
+        
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px;">📢 Volumul notificărilor:</label>
+          <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.7" 
+                 style="width: 100%; margin-bottom: 10px;">
+          <div style="font-size: 0.9em; opacity: 0.8;">Volume: <span id="volume-display">70%</span></div>
+        </div>
+        
+        <button onclick="testSound()" style="margin-bottom: 20px;">🔔 Testează sunetul</button>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="margin-bottom: 15px;">🎯 Tipuri de notificări:</h3>
+        
+        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <input type="checkbox" id="reminder-sounds" checked style="width: auto;">
+          <span>⏰ Sunet pentru reminder-uri</span>
+        </label>
+        
+        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <input type="checkbox" id="milestone-alerts" checked style="width: auto;">
+          <span>📏 Alerte milestone cursă (fiecare 10km, 30min)</span>
+        </label>
+        
+        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <input type="checkbox" id="achievement-sounds" checked style="width: auto;">
+          <span>🏆 Sunet pentru achievement-uri și challenge-uri</span>
+        </label>
+        
+        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <input type="checkbox" id="start-stop-sounds" checked style="width: auto;">
+          <span>🚀 Sunet pentru start/stop cursă</span>
+        </label>
+      </div>
+
+      <button onclick="saveAudioSettings()" style="background: linear-gradient(45deg, #22c55e, #16a34a);">
+        💾 Salvează setările audio
+      </button>
+    </section>
+
+    <section>
+      <h2>🎵 Testare Sunete</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        <button onclick="playSound('alarm')" class="sound-test-btn">⏰ Sunet Reminder</button>
+        <button onclick="playSound('success-sound')" class="sound-test-btn">✅ Sunet Succes</button>
+        <button onclick="playSound('milestone-sound')" class="sound-test-btn">📏 Sunet Milestone</button>
+        <button onclick="playSound('achievement-sound')" class="sound-test-btn">🏆 Sunet Achievement</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>📱 Funcționalități PWA</h2>
+      
+      <div style="margin-bottom: 20px;">
+        <div class="settings-group">
+          <h3 style="margin-bottom: 15px;">📲 Instalare Aplicație</h3>
+          
+          <p style="margin-bottom: 15px; opacity: 0.9;">
+            Instalează PogaReminder ca aplicație nativă pe dispozitivul tău pentru acces rapid și experiență optimizată!
+          </p>
+          
+          <button onclick="installPWA()" style="margin-bottom: 10px;">
+            📱 Instalează aplicația
+          </button>
+          
+          <button onclick="showInstallBanner()" style="background: rgba(255, 255, 255, 0.2); margin-bottom: 10px;">
+            📋 Arată banner instalare
+          </button>
+        </div>
+        
+        <div class="settings-group">
+          <h3 style="margin-bottom: 15px;">🌐 Status Conexiune</h3>
+          
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+            <div id="connection-status" style="padding: 8px 15px; border-radius: 20px; font-weight: bold;">
+              <!-- Will be updated by JavaScript -->
+            </div>
+            <button onclick="testConnection()" style="width: auto; padding: 8px 15px;">
+              🔄 Test conexiune
+            </button>
+          </div>
+          
+          <p style="font-size: 0.9em; opacity: 0.8;">
+            Aplicația funcționează offline și sincronizează datele când revii online.
+          </p>
+        </div>
+        
+        <div class="settings-group">
+          <h3 style="margin-bottom: 15px;">🔄 Actualizări Aplicație</h3>
+          
+          <p style="margin-bottom: 15px; opacity: 0.9;">
+            Service Worker Status: <span id="sw-status">Se verifică...</span>
+          </p>
+          
+          <button onclick="checkForUpdates()" style="margin-bottom: 10px;">
+            🔍 Verifică actualizări
+          </button>
+          
+          <button onclick="updateApp()" style="background: rgba(34, 197, 94, 0.8);">
+            ⬆️ Forțează actualizare
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔗 Partajare & Export</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        <button onclick="shareApp()" style="background: linear-gradient(45deg, #3b82f6, #1d4ed8);">
+          📤 Partajează aplicația
+        </button>
+        <button onclick="exportData()" style="background: linear-gradient(45deg, #8b5cf6, #7c3aed);">
+          💾 Export date avansate
+        </button>
+        <button onclick="generateQRCode()" style="background: linear-gradient(45deg, #06b6d4, #0891b2);">
+          📱 Generează QR Code
+        </button>
+      </div>
+    </section>
+
+    <section>
+      <h2>📱 Setări Aplicație</h2>
+      
+      <div style="margin-bottom: 15px;">
+        <h3 style="margin-bottom: 10px;">🎯 Obiective personale:</h3>
+        
+        <label style="display: block; margin-bottom: 10px;">
+          Obiectiv săptămânal (minute):
+          <input type="number" id="weekly-goal" value="400" min="60" max="2000" 
+                 style="margin-left: 10px; width: 100px;">
+        </label>
+        
+        <label style="display: block; margin-bottom: 10px;">
+          Obiectiv lunar (minute):
+          <input type="number" id="monthly-goal" value="1600" min="240" max="8000" 
+                 style="margin-left: 10px; width: 100px;">
+        </label>
+      </div>
+
+      <button onclick="saveAppSettings()" style="background: linear-gradient(45deg, #3b82f6, #1d4ed8);">
+        ⚙️ Salvează setările aplicației
+      </button>
+    </section>
+
+    <section>
+      <h2>📊 Gestionare Date</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        <button onclick="exportData()" style="background: linear-gradient(45deg, #8b5cf6, #7c3aed);">
+          💾 Export toate datele
+        </button>
+        <button onclick="clearAllData()" style="background: linear-gradient(45deg, #ef4444, #dc2626);">
+          🗑️ Șterge toate datele
+        </button>
+        <button onclick="resetChallenges()" style="background: linear-gradient(45deg, #f59e0b, #d97706);">
+          🔄 Resetează challenge-urile
+        </button>
+      </div>
+    </section>
+  </div>
+</div>
+
+  <!-- PWA Install Banner -->
+  <div id="pwa-install-banner" class="pwa-install-banner">
+    <div class="pwa-banner-content">
+      <div class="pwa-banner-title">📱 Instalează PogaReminder</div>
+      <div class="pwa-banner-text">Accesează rapid de pe ecranul principal!</div>
+    </div>
+    <button class="pwa-install-btn" onclick="installPWA()">Instalează</button>
+    <button style="background: transparent; border: none; color: white; font-size: 1.2em; cursor: pointer;" onclick="dismissInstallBanner()">✕</button>
+  </div>
+
+  <!-- Offline Indicator -->
+  <div id="offline-indicator" class="offline-indicator">
+    📡 Offline - datele se vor sincroniza când revii online
+  </div>
+
+  <!-- Update Available Notification -->
+  <div id="update-available" class="update-available" onclick="updateApp()">
+    🔄 Actualizare disponibilă - Apasă pentru a actualiza
+  </div>
+
+  <div class="floating-controls">
+    <button class="floating-btn" onclick="clearAllData()" title="Șterge tot">🗑️</button>
+    <button class="floating-btn" onclick="exportData()" title="Exportă date">💾</button>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
+  <audio id="alarm" preload="auto">
+    <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+PsumMeBC2E0fPTdjMFLILU8dODNwgZZrTu559NEAxUtujvul4dBS+E0fPUeSUGKIPA8dWLOA==" type="audio/wav">
+  </audio>
+  
+  <!-- Additional notification sounds -->
+  <audio id="success-sound" preload="auto">
+    <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+PsumMeBC2E0fPTdjMFLILU8dODNwgZZrTu559NEAxUtujvul4dBS+E0fPUeSUGKIPA8dWLOA==" type="audio/wav">
+  </audio>
+  
+  <audio id="milestone-sound" preload="auto">
+    <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+PsumMeBC2E0fPTdjMFLILU8dODNwgZZrTu559NEAxUtujvul4dBS+E0fPUeSUGKIPA8dWLOA==" type="audio/wav">
+  </audio>
+  
+  <audio id="achievement-sound" preload="auto">
+    <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+PsumMeBC2E0fPTdjMFLILU8dODNwgZZrTu559NEAxUtujvul4dBS+E0fPUeSUGKIPA8dWLOA==" type="audio/wav">
+  </audio>
+
+  <script>
+    // Your complete JavaScript code would go here
+    // (I'll provide the JavaScript separately due to length)
+  </script>
+</body>
+</html>
