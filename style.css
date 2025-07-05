@@ -1,41 +1,41 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #3a7bd5, #00d2ff);
-    color: white;
-    margin: 0;
-    padding: 20px;
+  margin: 0;
+  font-family: sans-serif;
+  background: linear-gradient(to right, #2563eb, #1cb5e0);
+  color: white;
 }
 .container {
-    max-width: 600px;
-    margin: auto;
-    background-color: rgba(0,0,0,0.4);
-    padding: 20px;
-    border-radius: 15px;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
 }
-h1, h2 {
-    text-align: center;
+section {
+  background: rgba(0,0,0,0.3);
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 12px;
 }
-input, textarea, button {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 1rem;
+input, button, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: none;
 }
-ul {
-    list-style: none;
-    padding: 0;
+button {
+  background-color: #ffffff;
+  color: #2563eb;
+  font-weight: bold;
+  cursor: pointer;
 }
 li {
-    background-color: rgba(255,255,255,0.2);
-    margin-top: 5px;
-    padding: 10px;
-    border-radius: 5px;
+  background-color: rgba(255,255,255,0.2);
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 5px;
 }
-li.completed {
-    text-decoration: line-through;
-    color: #aaa;
+.completed {
+  text-decoration: line-through;
+  color: #ccc;
 }
-a {
-    color: #ffe;
-}
+a { color: #fff; text-decoration: underline; }

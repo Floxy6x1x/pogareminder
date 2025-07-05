@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PogaReminder</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PogaReminder</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
 </head>
 <body>
-    <div class="container">
-        <h1>PogaReminder 🚴</h1>
+  <div class="container">
+    <h1>PogaReminder 🚴‍♂️</h1>
 
-        <section id="reminder">
-            <h2>Reminder</h2>
-            <input type="datetime-local" id="reminder-time">
-            <button onclick="setReminder()">Setează</button>
-            <audio id="alarm-sound" src="assets/alarm.mp3" preload="auto"></audio>
-        </section>
+    <section>
+      <h2>🔔 Reminder</h2>
+      <input type="datetime-local" id="reminder-time">
+      <button onclick="setReminder()">Setează reminder</button>
+      <audio id="alarm" src="assets/alarm.mp3" preload="auto"></audio>
+    </section>
 
-        <section id="todo">
-            <h2>To-Do</h2>
-            <input type="text" id="todo-input" placeholder="Ce ai de făcut?">
-            <button onclick="addTodo()">Adaugă</button>
-            <ul id="todo-list"></ul>
-        </section>
+    <section>
+      <h2>✅ To-Do</h2>
+      <input id="todo-input" placeholder="Adaugă sarcină">
+      <button onclick="addTodo()">Adaugă</button>
+      <ul id="todo-list"></ul>
+    </section>
 
-        <section id="notes">
-            <h2>Notițe</h2>
-            <textarea id="notes-area" placeholder="Scrie ceva..."></textarea>
-        </section>
+    <section>
+      <h2>📝 Notițe</h2>
+      <textarea id="notes" placeholder="Scrie ceva..."></textarea>
+    </section>
 
-        <section id="cycling">
-            <h2>Linkuri ciclism</h2>
-            <ul>
-                <li><a href="https://www.letour.fr" target="_blank">Site oficial Turul Franței</a></li>
-                <li><a href="https://www.procyclingstats.com" target="_blank">ProCyclingStats</a></li>
-                <li><a href="https://www.cyclingnews.com" target="_blank">CyclingNews</a></li>
-            </ul>
-        </section>
-    </div>
-    <script src="script.js"></script>
+    <section>
+      <h2>🔗 Linkuri Ciclism</h2>
+      <ul>
+        <li><a href="https://www.letour.fr" target="_blank">Turul Franței - Oficial</a></li>
+        <li><a href="https://www.procyclingstats.com" target="_blank">ProCyclingStats</a></li>
+        <li><a href="https://www.cyclingnews.com" target="_blank">CyclingNews</a></li>
+      </ul>
+    </section>
+  </div>
 
-    <script>
+  <script src="script.js"></script>
+  <script>
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('service-worker.js');
-        });
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js');
+      });
     }
-    </script>
-    </body>
+  </script>
+</body>
 </html>

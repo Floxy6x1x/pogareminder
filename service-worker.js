@@ -1,20 +1,21 @@
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open('pogareminder-v1').then(function(cache) {
+self.addEventListener("install", e => {
+  e.waitUntil(
+    caches.open("pogareminder").then(cache => {
       return cache.addAll([
-        './',
-        './index.html',
-        './style.css',
-        './script.js',
-        './manifest.json'
+        "./",
+        "./index.html",
+        "./style.css",
+        "./script.js",
+        "./manifest.json"
       ]);
     })
   );
 });
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
+
+self.addEventListener("fetch", e => {
+  e.respondWith(
+    caches.match(e.request).then(response => {
+      return response || fetch(e.request);
     })
   );
 });
