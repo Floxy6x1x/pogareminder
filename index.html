@@ -4,50 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PogaReminder</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
+  
+  <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#2563eb">
-</head>
-<body>
-  <div class="container">
-    <h1>PogaReminder 🚴‍♂️</h1>
-
-    <section>
-      <h2>🔔 Reminder</h2>
-      <input type="datetime-local" id="reminder-time">
-      <button onclick="setReminder()">Setează reminder</button>
-      <audio id="alarm" src="assets/alarm.mp3" preload="auto"></audio>
-    </section>
-
-    <section>
-      <h2>✅ To-Do</h2>
-      <input id="todo-input" placeholder="Adaugă sarcină">
-      <button onclick="addTodo()">Adaugă</button>
-      <ul id="todo-list"></ul>
-    </section>
-
-    <section>
-      <h2>📝 Notițe</h2>
-      <textarea id="notes" placeholder="Scrie ceva..."></textarea>
-    </section>
-
-    <section>
-      <h2>🔗 Linkuri Ciclism</h2>
-      <ul>
-        <li><a href="https://www.letour.fr" target="_blank">Turul Franței - Oficial</a></li>
-        <li><a href="https://www.procyclingstats.com" target="_blank">ProCyclingStats</a></li>
-        <li><a href="https://www.cyclingnews.com" target="_blank">CyclingNews</a></li>
-      </ul>
-    </section>
-  </div>
-
-  <script src="script.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js');
-      });
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="PogaReminder">
+  <meta name="description" content="Complete bike tracking and reminder app for serious cyclists">
+  
+  <!-- PWA Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232563eb'/><text y='50' font-size='40' text-anchor='middle' x='50' fill='white'>🚴</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232563eb'/><text y='50' font-size='40' text-anchor='middle' x='50' fill='white'>🚴</text></svg>">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="data:application/manifest+json,{
+    'name': 'PogaReminder - Complete Bike Tracker',
+    'short_name': 'PogaReminder',
+    'description': 'Complete bike tracking, reminders and cycling tools for serious cyclists',
+    'start_url': '/',
+    'display': 'standalone',
+    'background_color': '#2563eb',
+    'theme_color': '#2563eb',
+    'orientation': 'portrait-primary',
+    'categories': ['sports', 'fitness', 'productivity'],
+    'icons': [
+      {
+        'src': 'data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%232563eb\'/><text y=\'50\' font-size=\'40\' text-anchor=\'middle\' x=\'50\' fill=\'white\'>🚴</text></svg>',
+        'sizes': '192x192',
+        'type': 'image/svg+xml'
+      },
+      {
+        'src': 'data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%232563eb\'/><text y=\'50\' font-size=\'40\' text-anchor=\'middle\' x=\'50\' fill=\'white\'>🚴</text></svg>',
+        'sizes': '512x512',
+        'type': 'image/svg+xml'
+      }
+    ],
+    'shortcuts': [
+      {
+        'name': 'Start New Ride',
+        'short_name': 'New Ride',
+        'description': 'Start a new bike ride with GPS tracking',
+        'url': '/?tab=bike&action=start',
+        'icons': [{ 'src': 'data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%2322c55e\'/><text y=\'50\' font-size=\'30\' text-anchor=\'middle\' x=\'50\' fill=\'white\'>🚀</text></svg>', 'sizes': '96x96', 'type': 'image/svg+xml' }]
+      },
+      {
+        'name': 'Add Reminder',
+        'short_name': 'Reminder',
+        'description': 'Set a new reminder',
+        'url': '/?tab=main&action=reminder',
+        'icons': [{ 'src': 'data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23f59e0b\'/><text y=\'50\' font-size=\'30\' text-anchor=\'middle\' x=\'50\' fill=\'white\'>⏰</text></svg>', 'sizes': '96x96', 'type': 'image/svg+xml' }]
+      }
+    ]
+  }">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white; min-height: 100vh; padding: 20px;
     }
-  </script>
-</body>
-</html>
+    .container {
+      max-width: 800px; margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+      border-radius: 20px; padding: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    h1 { text-align: center; font-size: 2.5em; margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(45deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    section {
+      background: rgba(255, 255, 255, 0.1); border-radius: 15px;
+      padding: 25px; margin-bottom: 25px; border: 1px solid rgba(255, 255, 255, 0.2);
